@@ -150,10 +150,18 @@ export default function App() {
   <h2 style={sectionTitle}>Eliminatorias</h2>
 
   <div style={bracketGrid}>
+    <div style={roundColumn}>
+      <h3 style={roundTitle}>16avos</h3>
+      {dieciseisavos.map((match, index) => (
+        <div key={index} style={knockoutCard}>
+          <div style={knockoutTeam}>{match.home}</div>
+          <div style={knockoutTeam}>{match.away}</div>
+        </div>
+      ))}
+    </div>
 
     <div style={roundColumn}>
       <h3 style={roundTitle}>Octavos</h3>
-
       {octavos.map((match, index) => (
         <div key={index} style={knockoutCard}>
           <div style={knockoutTeam}>{match.home}</div>
@@ -164,7 +172,6 @@ export default function App() {
 
     <div style={roundColumn}>
       <h3 style={roundTitle}>Cuartos</h3>
-
       {cuartos.map((match, index) => (
         <div key={index} style={knockoutCard}>
           <div style={knockoutTeam}>{match.home}</div>
@@ -175,7 +182,6 @@ export default function App() {
 
     <div style={roundColumn}>
       <h3 style={roundTitle}>Semis</h3>
-
       {semis.map((match, index) => (
         <div key={index} style={knockoutCard}>
           <div style={knockoutTeam}>{match.home}</div>
@@ -185,17 +191,7 @@ export default function App() {
     </div>
 
     <div style={roundColumn}>
-  <h3 style={roundTitle}>16avos</h3>
-
-  {dieciseisavos.map((match, index) => (
-    <div key={index} style={knockoutCard}>
-      <div style={knockoutTeam}>{match.home}</div>
-      <div style={knockoutTeam}>{match.away}</div>
-    </div>
-  ))}
-</div>
       <h3 style={roundTitle}>Final</h3>
-
       {finals.map((match, index) => (
         <div key={index} style={finalCard}>
           <div style={knockoutTeam}>{match.home}</div>
@@ -203,7 +199,6 @@ export default function App() {
         </div>
       ))}
     </div>
-
   </div>
 </section>
     </main>
