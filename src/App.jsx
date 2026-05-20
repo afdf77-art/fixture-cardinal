@@ -159,7 +159,7 @@ export default function App() {
   <h2 style={sectionTitle}>Eliminatorias</h2>
 
   <div style={bracketGrid}>
-    <div style={roundsGrid}>
+    <div style={roundsGrid} className="rounds-mobile">
       <div id="16avos" style={roundColumn}>
         <h3 style={roundTitle}>16avos</h3>
         {dieciseisavos.map((match, index) => (
@@ -799,6 +799,7 @@ const bracketGrid = {
   gridTemplateColumns: "3fr 1.2fr",
   gap: "36px",
   maxWidth: "1400px",
+  width: "100%",
   margin: "0 auto",
   alignItems: "start",
 };
@@ -851,6 +852,7 @@ const trophyImage = {
 };
 const roundsGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(4, 1fr)",
-  gap: "24px",
+  gridTemplateColumns: "repeat(4, minmax(120px,1fr))",
+  gap: "16px",
+  width: "100%",
 };

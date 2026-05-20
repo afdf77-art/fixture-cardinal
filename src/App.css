@@ -202,3 +202,27 @@
     justify-content: center !important;
   }
 }
+@media (max-width: 768px) {
+  #eliminatorias > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  #eliminatorias [style] {
+    max-width: 100%;
+  }
+
+  #eliminatorias img {
+    width: 220px !important;
+  }
+
+  #eliminatorias {
+    overflow-x: hidden;
+  }
+  @media (max-width: 768px) {
+
+  .rounds-mobile {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+
+}
