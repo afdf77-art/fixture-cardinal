@@ -154,7 +154,7 @@ export default function App() {
   ))}
 </section>
 
-<section id="eliminatorias" style={knockoutSection}>
+<<section id="eliminatorias" style={knockoutSection}>
   <h2 style={sectionTitle}>Eliminatorias</h2>
 
   <div style={bracketGrid}>
@@ -198,25 +198,31 @@ export default function App() {
       ))}
     </div>
 
-<div id="tercer-puesto" style={roundColumn}>
-  <h3 style={roundTitle}>3º y 4º</h3>
+    <div style={finalZone}>
+      <img
+  src={copaImage}
+  alt="Copa del Mundo"
+  style={trophyImage}
+/>
+      <div id="tercer-puesto" style={roundColumn}>
+        <h3 style={roundTitle}>3º y 4º</h3>
+        {tercerPuesto.map((match, index) => (
+          <div key={index} style={knockoutCard}>
+            <div style={knockoutTeam}>{match.home}</div>
+            <div style={knockoutTeam}>{match.away}</div>
+          </div>
+        ))}
+      </div>
 
-  {tercerPuesto.map((match, index) => (
-    <div key={index} style={knockoutCard}>
-      <div style={knockoutTeam}>{match.home}</div>
-      <div style={knockoutTeam}>{match.away}</div>
-    </div>
-  ))}
-</div>
-
-    <div id="final" style={roundColumn}>
-      <h3 style={roundTitle}>Final</h3>
-      {finals.map((match, index) => (
-        <div key={index} style={finalCard}>
-          <div style={knockoutTeam}>{match.home}</div>
-          <div style={knockoutTeam}>{match.away}</div>
-        </div>
-      ))}
+      <div id="final" style={roundColumn}>
+        <h3 style={roundTitle}>Final</h3>
+        {finals.map((match, index) => (
+          <div key={index} style={finalCard}>
+            <div style={knockoutTeam}>{match.home}</div>
+            <div style={knockoutTeam}>{match.away}</div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
@@ -827,4 +833,16 @@ const knockoutTeam = {
   padding: "10px 0",
   fontWeight: "800",
   borderBottom: "1px solid rgba(255,255,255,.08)",
+};
+const finalZone = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-end",
+  gap: "40px",
+};
+const trophyImage = {
+  width: "240px",
+  margin: "0 auto",
+  display: "block",
+  filter: "drop-shadow(0 0 30px rgba(255,215,0,.35))",
 };
