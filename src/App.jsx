@@ -11,10 +11,17 @@ export default function App() {
             <a href="https://www.facebook.com/grupocardinal/" target="_blank" style={socialButton}>
               Facebook
             </a>
-            <a href="https://www.instagram.com/cardinal.supermercados/" target="_blank" style={socialButton}>
-              Instagram
             <a
-  href="https://cardinalsupermercados.com/"
+  href="https://www.instagram.com/cardinal.supermercados/"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={socialButton}
+>
+  Instagram
+</a>
+
+<a
+  href="https://www.cardinalsupermercados.com/"
   target="_blank"
   rel="noopener noreferrer"
   style={socialButton}
