@@ -146,9 +146,99 @@ export default function App() {
     </div>
   ))}
 </section>
+<section style={knockoutSection}>
+  <h2 style={sectionTitle}>Eliminatorias</h2>
+
+  <div style={bracketGrid}>
+
+    <div style={roundColumn}>
+      <h3 style={roundTitle}>Octavos</h3>
+
+      {octavos.map((match, index) => (
+        <div key={index} style={knockoutCard}>
+          <div style={knockoutTeam}>{match.home}</div>
+          <div style={knockoutTeam}>{match.away}</div>
+        </div>
+      ))}
+    </div>
+
+    <div style={roundColumn}>
+      <h3 style={roundTitle}>Cuartos</h3>
+
+      {cuartos.map((match, index) => (
+        <div key={index} style={knockoutCard}>
+          <div style={knockoutTeam}>{match.home}</div>
+          <div style={knockoutTeam}>{match.away}</div>
+        </div>
+      ))}
+    </div>
+
+    <div style={roundColumn}>
+      <h3 style={roundTitle}>Semis</h3>
+
+      {semis.map((match, index) => (
+        <div key={index} style={knockoutCard}>
+          <div style={knockoutTeam}>{match.home}</div>
+          <div style={knockoutTeam}>{match.away}</div>
+        </div>
+      ))}
+    </div>
+
+    <div style={roundColumn}>
+  <h3 style={roundTitle}>16avos</h3>
+
+  {dieciseisavos.map((match, index) => (
+    <div key={index} style={knockoutCard}>
+      <div style={knockoutTeam}>{match.home}</div>
+      <div style={knockoutTeam}>{match.away}</div>
+    </div>
+  ))}
+</div>
+      <h3 style={roundTitle}>Final</h3>
+
+      {finals.map((match, index) => (
+        <div key={index} style={finalCard}>
+          <div style={knockoutTeam}>{match.home}</div>
+          <div style={knockoutTeam}>{match.away}</div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
     </main>
   );
 }
+const dieciseisavos = [
+  { home: "1A", away: "2B" },
+  { home: "1C", away: "2D" },
+  { home: "1E", away: "2F" },
+  { home: "1G", away: "2H" },
+  { home: "1I", away: "2J" },
+  { home: "1K", away: "2L" },
+  { home: "1B", away: "2A" },
+  { home: "1D", away: "2C" },
+];
+
+const octavos = [
+  { home: "Ganador 1", away: "Ganador 2" },
+  { home: "Ganador 3", away: "Ganador 4" },
+  { home: "Ganador 5", away: "Ganador 6" },
+  { home: "Ganador 7", away: "Ganador 8" },
+];
+
+const cuartos = [
+  { home: "Ganador 1", away: "Ganador 2" },
+  { home: "Ganador 3", away: "Ganador 4" },
+];
+
+const semis = [
+  { home: "Ganador Q1", away: "Ganador Q2" },
+];
+
+const finals = [
+  { home: "Finalista 1", away: "Finalista 2" },
+];
 
 const groups = [
   {
@@ -680,4 +770,49 @@ const groupNavButton = {
   fontWeight: "900",
   textDecoration: "none",
   boxShadow: "0 0 16px rgba(123,208,0,.18)",
+};
+const knockoutSection = {
+  background: "#050505",
+  padding: "100px 30px",
+};
+
+const bracketGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))",
+  gap: "28px",
+  maxWidth: "1400px",
+  margin: "0 auto",
+};
+
+const roundColumn = {
+  display: "flex",
+  flexDirection: "column",
+  gap: "18px",
+};
+
+const roundTitle = {
+  fontSize: "28px",
+  fontWeight: "900",
+  color: "#7bd000",
+  marginBottom: "10px",
+  textAlign: "center",
+};
+
+const knockoutCard = {
+  background: "linear-gradient(180deg,#141414,#0d0d0d)",
+  border: "1px solid rgba(123,208,0,.2)",
+  borderRadius: "18px",
+  padding: "18px",
+};
+
+const finalCard = {
+  ...knockoutCard,
+  border: "2px solid #7bd000",
+  boxShadow: "0 0 25px rgba(123,208,0,.25)",
+};
+
+const knockoutTeam = {
+  padding: "10px 0",
+  fontWeight: "800",
+  borderBottom: "1px solid rgba(255,255,255,.08)",
 };
