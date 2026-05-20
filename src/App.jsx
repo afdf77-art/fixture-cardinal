@@ -146,11 +146,18 @@ export default function App() {
     </div>
   ))}
 </section>
+<section style={groupNavSection}>
+  <a href="#16avos" style={groupNavButton}>16</a>
+  <a href="#octavos" style={groupNavButton}>8</a>
+  <a href="#cuartos" style={groupNavButton}>4</a>
+  <a href="#semis" style={groupNavButton}>SF</a>
+  <a href="#final" style={groupNavButton}>F</a>
+</section>
 <section style={knockoutSection}>
   <h2 style={sectionTitle}>Eliminatorias</h2>
 
   <div style={bracketGrid}>
-    <div style={roundColumn}>
+    <div id="16avos" style={roundColumn}>
       <h3 style={roundTitle}>16avos</h3>
       {dieciseisavos.map((match, index) => (
         <div key={index} style={knockoutCard}>
@@ -160,7 +167,7 @@ export default function App() {
       ))}
     </div>
 
-    <div style={roundColumn}>
+    <div id="octavos" style={roundColumn}>
       <h3 style={roundTitle}>Octavos</h3>
       {octavos.map((match, index) => (
         <div key={index} style={knockoutCard}>
@@ -170,7 +177,7 @@ export default function App() {
       ))}
     </div>
 
-    <div style={roundColumn}>
+    <div id="cuartos" style={roundColumn}>
       <h3 style={roundTitle}>Cuartos</h3>
       {cuartos.map((match, index) => (
         <div key={index} style={knockoutCard}>
@@ -180,7 +187,7 @@ export default function App() {
       ))}
     </div>
 
-    <div style={roundColumn}>
+    <div id="semis" style={roundColumn}>
       <h3 style={roundTitle}>Semis</h3>
       {semis.map((match, index) => (
         <div key={index} style={knockoutCard}>
@@ -190,7 +197,7 @@ export default function App() {
       ))}
     </div>
 
-    <div style={roundColumn}>
+    <div id="final" style={roundColumn}>
       <h3 style={roundTitle}>Final</h3>
       {finals.map((match, index) => (
         <div key={index} style={finalCard}>
