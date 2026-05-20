@@ -806,7 +806,7 @@ const bracketGrid = {
 const roundColumn = {
   display: "flex",
   flexDirection: "column",
-  gap: "18px",
+  gap: "12px",
 };
 
 const roundTitle = {
@@ -828,6 +828,7 @@ const finalCard = {
   ...knockoutCard,
   border: "2px solid #7bd000",
   boxShadow: "0 0 25px rgba(123,208,0,.25)",
+  transform: "scale(1.08)",
 };
 
 const knockoutTeam = {
@@ -838,11 +839,12 @@ const knockoutTeam = {
 const finalZone = {
   display: "flex",
   flexDirection: "column",
-  justifyContent: "flex-end",
-  gap: "40px",
+  justifyContent: "center",
+  gap: "50px",
+  marginTop: "40px",
 };
 const trophyImage = {
-  width: "360px",
+  width: "320px",
   margin: "0 auto",
   display: "block",
   filter: "drop-shadow(0 0 30px rgba(255,215,0,.35))",
