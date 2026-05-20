@@ -1,4 +1,5 @@
 import heroImage from "./assets/hero-full.jpg";
+import copaImage from "./assets/copa.png";
 import "./App.css";
 export default function App() {
   return (
@@ -154,7 +155,7 @@ export default function App() {
   ))}
 </section>
 
-<<section id="eliminatorias" style={knockoutSection}>
+<section id="eliminatorias" style={knockoutSection}>
   <h2 style={sectionTitle}>Eliminatorias</h2>
 
   <div style={bracketGrid}>
