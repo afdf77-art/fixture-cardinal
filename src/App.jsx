@@ -34,7 +34,7 @@ export default function App() {
 
       <section style={buttonSection}>
         <a href="#fixture" style={greenButton}>Ver Partidos</a>
-        <button style={darkButton}>Participa</button>
+       <a href="#eliminatorias" style={darkButton}>Eliminatorias</a>
       </section>
 
       <section style={groupNavSection}>
@@ -153,7 +153,7 @@ export default function App() {
   <a href="#semis" style={groupNavButton}>SF</a>
   <a href="#final" style={groupNavButton}>F</a>
 </section>
-<section style={knockoutSection}>
+<section id="eliminatorias" style={knockoutSection}>
   <h2 style={sectionTitle}>Eliminatorias</h2>
 
   <div style={bracketGrid}>
@@ -597,6 +597,8 @@ const darkButton = {
   fontWeight: "900",
   fontSize: "24px",
   cursor: "pointer",
+  textDecoration: "none",
+  display: "inline-block",
   boxShadow: "0 0 30px rgba(123,208,0,.38)",
 };
 
