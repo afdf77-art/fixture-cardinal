@@ -159,52 +159,51 @@ export default function App() {
   <h2 style={sectionTitle}>Eliminatorias</h2>
 
   <div style={bracketGrid}>
-    <div id="16avos" style={roundColumn}>
-      <h3 style={roundTitle}>16avos</h3>
-      {dieciseisavos.map((match, index) => (
-        <div key={index} style={knockoutCard}>
-          <div style={knockoutTeam}>{match.home}</div>
-          <div style={knockoutTeam}>{match.away}</div>
-        </div>
-      ))}
-    </div>
+    <div style={roundsGrid}>
+      <div id="16avos" style={roundColumn}>
+        <h3 style={roundTitle}>16avos</h3>
+        {dieciseisavos.map((match, index) => (
+          <div key={index} style={knockoutCard}>
+            <div style={knockoutTeam}>{match.home}</div>
+            <div style={knockoutTeam}>{match.away}</div>
+          </div>
+        ))}
+      </div>
 
-    <div id="octavos" style={roundColumn}>
-      <h3 style={roundTitle}>Octavos</h3>
-      {octavos.map((match, index) => (
-        <div key={index} style={knockoutCard}>
-          <div style={knockoutTeam}>{match.home}</div>
-          <div style={knockoutTeam}>{match.away}</div>
-        </div>
-      ))}
-    </div>
+      <div id="octavos" style={roundColumn}>
+        <h3 style={roundTitle}>Octavos</h3>
+        {octavos.map((match, index) => (
+          <div key={index} style={knockoutCard}>
+            <div style={knockoutTeam}>{match.home}</div>
+            <div style={knockoutTeam}>{match.away}</div>
+          </div>
+        ))}
+      </div>
 
-    <div id="cuartos" style={roundColumn}>
-      <h3 style={roundTitle}>Cuartos</h3>
-      {cuartos.map((match, index) => (
-        <div key={index} style={knockoutCard}>
-          <div style={knockoutTeam}>{match.home}</div>
-          <div style={knockoutTeam}>{match.away}</div>
-        </div>
-      ))}
-    </div>
+      <div id="cuartos" style={roundColumn}>
+        <h3 style={roundTitle}>Cuartos</h3>
+        {cuartos.map((match, index) => (
+          <div key={index} style={knockoutCard}>
+            <div style={knockoutTeam}>{match.home}</div>
+            <div style={knockoutTeam}>{match.away}</div>
+          </div>
+        ))}
+      </div>
 
-    <div id="semis" style={roundColumn}>
-      <h3 style={roundTitle}>Semis</h3>
-      {semis.map((match, index) => (
-        <div key={index} style={knockoutCard}>
-          <div style={knockoutTeam}>{match.home}</div>
-          <div style={knockoutTeam}>{match.away}</div>
-        </div>
-      ))}
+      <div id="semis" style={roundColumn}>
+        <h3 style={roundTitle}>Semis</h3>
+        {semis.map((match, index) => (
+          <div key={index} style={knockoutCard}>
+            <div style={knockoutTeam}>{match.home}</div>
+            <div style={knockoutTeam}>{match.away}</div>
+          </div>
+        ))}
+      </div>
     </div>
 
     <div style={finalZone}>
-      <img
-  src={copaImage}
-  alt="Copa del Mundo"
-  style={trophyImage}
-/>
+      <img src={copaImage} alt="Copa del Mundo" style={trophyImage} />
+
       <div id="tercer-puesto" style={roundColumn}>
         <h3 style={roundTitle}>3º y 4º</h3>
         {tercerPuesto.map((match, index) => (
@@ -797,10 +796,11 @@ const knockoutSection = {
 
 const bracketGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))",
-  gap: "28px",
+  gridTemplateColumns: "3fr 1.2fr",
+  gap: "36px",
   maxWidth: "1400px",
   margin: "0 auto",
+  alignItems: "start",
 };
 
 const roundColumn = {
@@ -842,8 +842,13 @@ const finalZone = {
   gap: "40px",
 };
 const trophyImage = {
-  width: "240px",
+  width: "360px",
   margin: "0 auto",
   display: "block",
   filter: "drop-shadow(0 0 30px rgba(255,215,0,.35))",
+};
+const roundsGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(4, 1fr)",
+  gap: "24px",
 };
