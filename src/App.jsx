@@ -37,7 +37,7 @@ export default function App() {
        <a href="#eliminatorias" style={darkButton}>Eliminatorias</a>
       </section>
 
-      <section style={groupNavSection}>
+     <section style={groupNavSection}>
   {groups.map((group) => (
     <a
       key={group.name}
@@ -47,6 +47,12 @@ export default function App() {
       {group.name.replace("GRUPO ", "")}
     </a>
   ))}
+
+  <a href="#16avos" style={groupNavButton}>16</a>
+  <a href="#octavos" style={groupNavButton}>8</a>
+  <a href="#cuartos" style={groupNavButton}>4</a>
+  <a href="#semis" style={groupNavButton}>SF</a>
+  <a href="#final" style={groupNavButton}>F</a>
 </section>
 
 <section id="fixture" style={matchesSection}>
@@ -146,13 +152,7 @@ export default function App() {
     </div>
   ))}
 </section>
-<section style={groupNavSection}>
-  <a href="#16avos" style={groupNavButton}>16</a>
-  <a href="#octavos" style={groupNavButton}>8</a>
-  <a href="#cuartos" style={groupNavButton}>4</a>
-  <a href="#semis" style={groupNavButton}>SF</a>
-  <a href="#final" style={groupNavButton}>F</a>
-</section>
+
 <section id="eliminatorias" style={knockoutSection}>
   <h2 style={sectionTitle}>Eliminatorias</h2>
 
