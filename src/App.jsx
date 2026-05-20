@@ -48,11 +48,12 @@ export default function App() {
     </a>
   ))}
 
-  <a href="#16avos" style={groupNavButton}>16</a>
-  <a href="#octavos" style={groupNavButton}>8</a>
-  <a href="#cuartos" style={groupNavButton}>4</a>
-  <a href="#semis" style={groupNavButton}>SF</a>
-  <a href="#final" style={groupNavButton}>F</a>
+<a href="#16avos" style={groupNavButton}>16F</a>
+<a href="#octavos" style={groupNavButton}>8F</a>
+<a href="#cuartos" style={groupNavButton}>4F</a>
+<a href="#semis" style={groupNavButton}>SF</a>
+<a href="#tercer-puesto" style={groupNavButton}>3/4</a>
+<a href="#final" style={groupNavButton}>F</a>
 </section>
 
 <section id="fixture" style={matchesSection}>
@@ -197,6 +198,17 @@ export default function App() {
       ))}
     </div>
 
+<div id="tercer-puesto" style={roundColumn}>
+  <h3 style={roundTitle}>3º y 4º</h3>
+
+  {tercerPuesto.map((match, index) => (
+    <div key={index} style={knockoutCard}>
+      <div style={knockoutTeam}>{match.home}</div>
+      <div style={knockoutTeam}>{match.away}</div>
+    </div>
+  ))}
+</div>
+
     <div id="final" style={roundColumn}>
       <h3 style={roundTitle}>Final</h3>
       {finals.map((match, index) => (
@@ -211,37 +223,33 @@ export default function App() {
     </main>
   );
 }
-const dieciseisavos = [
-  { home: "1A", away: "2B" },
-  { home: "1C", away: "2D" },
-  { home: "1E", away: "2F" },
-  { home: "1G", away: "2H" },
-  { home: "1I", away: "2J" },
-  { home: "1K", away: "2L" },
-  { home: "1B", away: "2A" },
-  { home: "1D", away: "2C" },
-];
+const dieciseisavos = Array.from({ length: 16 }, (_, i) => ({
+  home: `Equipo ${i * 2 + 1}`,
+  away: `Equipo ${i * 2 + 2}`,
+}));
 
-const octavos = [
-  { home: "Ganador 1", away: "Ganador 2" },
-  { home: "Ganador 3", away: "Ganador 4" },
-  { home: "Ganador 5", away: "Ganador 6" },
-  { home: "Ganador 7", away: "Ganador 8" },
-];
+const octavos = Array.from({ length: 8 }, (_, i) => ({
+  home: `Ganador ${i * 2 + 1}`,
+  away: `Ganador ${i * 2 + 2}`,
+}));
 
-const cuartos = [
-  { home: "Ganador 1", away: "Ganador 2" },
-  { home: "Ganador 3", away: "Ganador 4" },
-];
+const cuartos = Array.from({ length: 4 }, (_, i) => ({
+  home: `Ganador 8F ${i * 2 + 1}`,
+  away: `Ganador 8F ${i * 2 + 2}`,
+}));
 
 const semis = [
-  { home: "Ganador Q1", away: "Ganador Q2" },
+  { home: "Ganador 4F 1", away: "Ganador 4F 2" },
+  { home: "Ganador 4F 3", away: "Ganador 4F 4" },
+];
+
+const tercerPuesto = [
+  { home: "Perdedor SF 1", away: "Perdedor SF 2" },
 ];
 
 const finals = [
-  { home: "Finalista 1", away: "Finalista 2" },
+  { home: "Ganador SF 1", away: "Ganador SF 2" },
 ];
-
 const groups = [
   {
     name: "GRUPO A",
