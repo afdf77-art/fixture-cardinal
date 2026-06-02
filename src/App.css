@@ -183,46 +183,37 @@
   }
 }
 @media (max-width: 768px) {
-  main {
+  #eliminatorias {
     overflow-x: hidden;
   }
 
-  .match-row-mobile {
-    grid-template-columns: 1fr !important;
-    gap: 14px !important;
-    text-align: center;
-  }
-
-  .team-mobile {
-    justify-content: center !important;
-    font-size: 20px !important;
-  }
-
-  .score-mobile {
-    justify-content: center !important;
-  }
-}
-@media (max-width: 768px) {
   #eliminatorias > div {
     grid-template-columns: 1fr !important;
   }
 
-  #eliminatorias [style] {
-    max-width: 100%;
+  .rounds-mobile {
+    grid-template-columns: 1fr 1fr !important;
+    width: 100% !important;
   }
 
   #eliminatorias img {
     width: 220px !important;
   }
 
-  #eliminatorias {
-    overflow-x: hidden;
-  }
-  @media (max-width: 768px) {
-
-  .rounds-mobile {
-    grid-template-columns: 1fr 1fr !important;
+  table {
+    display: block;
+    width: 100% !important;
+    overflow-x: auto;
+    white-space: nowrap;
   }
 
+  table th,
+  table td {
+    min-width: 52px;
+  }
 
+  table th:first-child,
+  table td:first-child {
+    min-width: 170px;
+  }
 }
