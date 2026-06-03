@@ -184,45 +184,58 @@
 }
 @media (max-width: 768px) {
 
-  .match-row-mobile {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 14px !important;
-    width: 100% !important;
-    box-sizing: border-box;
-  }
-
-  .team-mobile {
-    justify-content: center !important;
-    text-align: center !important;
-    font-size: 20px !important;
+  body,
+  html,
+  main {
     width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
   }
 
+  #fixture {
+    padding: 40px 12px !important;
+  }
+
+  .match-row-mobile {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+  }
+
+  .match-row-mobile > div,
+  .team-mobile,
   .score-mobile {
     justify-content: center !important;
-    width: 100%;
   }
 
   input[type="number"] {
-    width: 60px !important;
-    height: 50px !important;
-    font-size: 24px !important;
+    width: 54px !important;
+    height: 48px !important;
+    font-size: 22px !important;
   }
 
   .table-scroll {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+  width: 100%;
+  overflow-x: hidden !important;
+}
 
-  .table-scroll table {
-    min-width: 760px;
-  }
+.table-scroll table {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  table-layout: fixed !important;
+  font-size: 10px !important;
+}
 
-}.table-scroll table {
-  min-width: 520px !important;
+.table-scroll th,
+.table-scroll td {
+  padding: 6px 1px !important;
+  white-space: normal !important;
+}
+
+.table-scroll th:first-child,
+.table-scroll td:first-child {
+  width: 42% !important;
+  font-size: 10px !important;
 }
 
 .table-scroll th:nth-child(6),
@@ -231,5 +244,34 @@
 .table-scroll td:nth-child(7),
 .table-scroll th:nth-child(8),
 .table-scroll td:nth-child(8) {
-  display: none;
+  display: none !important;
+}
+
+.table-scroll img {
+  width: 20px !important;
+}
+
+  #eliminatorias {
+    padding: 60px 12px !important;
+    overflow-x: hidden !important;
+  }
+
+  #eliminatorias > div {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .rounds-mobile {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  #eliminatorias img {
+    width: 180px !important;
+    max-width: 80% !important;
+  }
 }
