@@ -263,9 +263,8 @@ return (
     </div>
   ))}
 </section>
-<section id="pronosticos"
-<h2 style={sectionTitle}>JUGÁ Y GANÁ</h2>
-
+<section id="pronosticos" style={knockoutSection}>
+  <h2 style={sectionTitle}>JUGÁ Y GANÁ</h2>
   <div style={bracketGrid}>
     <div style={roundsGrid} className="rounds-mobile">
       <div id="16avos" style={roundColumn}>
@@ -861,13 +860,14 @@ const teamCell = {
   ...td,
   display: "flex",
   alignItems: "center",
-  gap: "10px",
+  gap: "4px",
   textAlign: "left",
+  fontSize: "10px",
 };
 
 const smallFlag = {
-  width: "28px",
-  borderRadius: "4px",
+  width: "18px",
+  borderRadius: "3px",
 };
 
 const pointsCell = {
