@@ -144,7 +144,7 @@ return (
     <div key={groupIndex} id={group.name} style={groupBlock}>
 
       <h2 style={sectionTitle}>
-  {group.name} - PRUEBA
+  {group.name}
 </h2>
 
       <div style={matchesGrid}>
