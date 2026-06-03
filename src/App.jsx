@@ -125,8 +125,9 @@ return (
       </section>
 
       <section style={buttonSection}>
-        <a href="#fixture" style={greenButton}>Ver Partidos</a>
-       <a href="#eliminatorias" style={darkButton}>Eliminatorias</a>
+       <a href="#fixture" style={greenButton}>FIXTURE</a>
+
+<a href="#pronosticos" style={darkButton}>JUGÁ Y GANÁ</a>
       </section>
 
      <section style={groupNavSection}>
@@ -262,8 +263,8 @@ return (
     </div>
   ))}
 </section>
-<section id="eliminatorias" style={knockoutSection}>
-  <h2 style={sectionTitle}>Eliminatorias</h2>
+<section id="pronosticos"
+<h2 style={sectionTitle}>JUGÁ Y GANÁ</h2>
 
   <div style={bracketGrid}>
     <div style={roundsGrid} className="rounds-mobile">
