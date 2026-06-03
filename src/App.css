@@ -183,37 +183,53 @@
   }
 }
 @media (max-width: 768px) {
-  #eliminatorias {
-    overflow-x: hidden;
-  }
 
-  #eliminatorias > div {
-    grid-template-columns: 1fr !important;
-  }
-
-  .rounds-mobile {
-    grid-template-columns: 1fr 1fr !important;
+  .match-row-mobile {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 14px !important;
     width: 100% !important;
+    box-sizing: border-box;
   }
 
-  #eliminatorias img {
-    width: 220px !important;
+  .team-mobile {
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: 20px !important;
+    width: 100%;
   }
 
-  table {
-    display: block;
-    width: 100% !important;
+  .score-mobile {
+    justify-content: center !important;
+    width: 100%;
+  }
+
+  input[type="number"] {
+    width: 60px !important;
+    height: 50px !important;
+    font-size: 24px !important;
+  }
+
+  .table-scroll {
+    width: 100%;
     overflow-x: auto;
-    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
   }
 
-  table th,
-  table td {
-    min-width: 52px;
+  .table-scroll table {
+    min-width: 760px;
   }
 
-  table th:first-child,
-  table td:first-child {
-    min-width: 170px;
-  }
+}.table-scroll table {
+  min-width: 520px !important;
+}
+
+.table-scroll th:nth-child(6),
+.table-scroll td:nth-child(6),
+.table-scroll th:nth-child(7),
+.table-scroll td:nth-child(7),
+.table-scroll th:nth-child(8),
+.table-scroll td:nth-child(8) {
+  display: none;
 }

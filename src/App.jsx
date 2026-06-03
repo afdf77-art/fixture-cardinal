@@ -1,8 +1,90 @@
+import { useState } from "react";
 import heroImage from "./assets/hero-full.jpg";
 import copaImage from "./assets/copa.png";
 import "./App.css";
-export default function App() {
-  return (
+export default function App() {const [scores, setScores] = useState({});
+
+const updateScore = (groupName, matchIndex, side, value) => {
+  const key = `${groupName}-${matchIndex}`;
+
+  setScores((prev) => ({
+    ...prev,
+    [key]: {
+      ...prev[key],
+      [side]: value,
+    },
+  }));
+};
+
+const calculateStandings = (group) => {
+  const table = {};
+
+  group.teams.forEach((team) => {
+    table[team.name] = {
+      name: team.name,
+      flag: team.flag,
+      PJ: 0,
+      G: 0,
+      E: 0,
+      P: 0,
+      GF: 0,
+      GC: 0,
+      DG: 0,
+      PTS: 0,
+    };
+  });
+
+  group.matches.forEach((match, index) => {
+    const score = scores[`${group.name}-${index}`];
+
+    if (
+      score &&
+      score.home !== "" &&
+      score.away !== ""
+    ) {
+      const homeGoals = Number(score.home);
+      const awayGoals = Number(score.away);
+
+      const homeTeam = table[match.home];
+      const awayTeam = table[match.away];
+
+      homeTeam.PJ += 1;
+      awayTeam.PJ += 1;
+
+      homeTeam.GF += homeGoals;
+      homeTeam.GC += awayGoals;
+
+      awayTeam.GF += awayGoals;
+      awayTeam.GC += homeGoals;
+
+      homeTeam.DG = homeTeam.GF - homeTeam.GC;
+      awayTeam.DG = awayTeam.GF - awayTeam.GC;
+
+      if (homeGoals > awayGoals) {
+        homeTeam.G += 1;
+        homeTeam.PTS += 3;
+        awayTeam.P += 1;
+      } else if (awayGoals > homeGoals) {
+        awayTeam.G += 1;
+        awayTeam.PTS += 3;
+        homeTeam.P += 1;
+      } else {
+        homeTeam.E += 1;
+        awayTeam.E += 1;
+        homeTeam.PTS += 1;
+        awayTeam.PTS += 1;
+      }
+    }
+  });
+
+  return Object.values(table).sort(
+    (a, b) =>
+      b.PTS - a.PTS ||
+      b.DG - a.DG ||
+      b.GF - a.GF
+  );
+};
+return (
     <main style={page}>
       <section style={imageSection}>
         <div style={imageWrapper}>
@@ -60,13 +142,19 @@ export default function App() {
 <section id="fixture" style={matchesSection}>
   {groups.map((group, groupIndex) => (
     <div key={groupIndex} id={group.name} style={groupBlock}>
+
       <h2 style={sectionTitle}>
-        {group.name}
-      </h2>
+  {group.name} - PRUEBA
+</h2>
 
       <div style={matchesGrid}>
         {group.matches.map((match, index) => (
-          <div key={index} style={matchRow} className="match-row-mobile">
+          <div
+            key={index}
+            style={matchRow}
+            className="match-row-mobile"
+          >
+
             <div style={matchDate}>
               {match.date}
             </div>
@@ -77,24 +165,30 @@ export default function App() {
                 alt={match.home}
                 style={flagImage}
               />
-
               <span>{match.home}</span>
             </div>
 
             <div style={scoreBoxInline} className="score-mobile">
               <input
-                type="number"
-                style={scoreInput}
-              />
+  type="number"
+  style={scoreInput}
+  value={scores[`${group.name}-${index}`]?.home ?? ""}
+  onChange={(e) =>
+    updateScore(group.name, index, "home", e.target.value)
+  }
+/>
 
-              <span style={scoreSeparator}>
-                -
-              </span>
+              <span style={scoreSeparator}>-</span>
 
-              <input
-                type="number"
-                style={scoreInput}
-              />
+           <input
+  type="number"
+  inputMode="numeric"
+  style={scoreInput}
+  value={scores[`${group.name}-${index}`]?.away ?? ""}
+  onChange={(e) =>
+    updateScore(group.name, index, "away", e.target.value)
+  }
+/>
             </div>
 
             <div style={teamRight} className="team-mobile">
@@ -103,58 +197,62 @@ export default function App() {
                 alt={match.away}
                 style={flagImage}
               />
-
               <span>{match.away}</span>
             </div>
+
           </div>
         ))}
-     </div>
+      </div>
 
-<table style={standingsTable}>
-  <thead>
-    <tr>
-      <th style={th}>Equipo</th>
-      <th style={th}>PJ</th>
-      <th style={th}>G</th>
-      <th style={th}>E</th>
-      <th style={th}>P</th>
-      <th style={th}>GF</th>
-      <th style={th}>GC</th>
-      <th style={th}>DG</th>
-      <th style={th}>PTS</th>
+      <div className="table-scroll">
+
+        <table style={standingsTable}>
+
+          <thead>
+            <tr>
+              <th style={th}>Equipo</th>
+              <th style={th}>PJ</th>
+              <th style={th}>G</th>
+              <th style={th}>E</th>
+              <th style={th}>P</th>
+              <th style={th}>GF</th>
+              <th style={th}>GC</th>
+              <th style={th}>DG</th>
+              <th style={th}>PTS</th>
+            </tr>
+          </thead>
+
+          <tbody>
+  {calculateStandings(group).map((team, index) => (
+    <tr key={index}>
+      <td style={teamCell}>
+        <img
+          src={`https://flagcdn.com/w40/${team.flag}.png`}
+          alt={team.name}
+          style={smallFlag}
+        />
+        {team.name}
+      </td>
+
+      <td style={td}>{team.PJ}</td>
+      <td style={td}>{team.G}</td>
+      <td style={td}>{team.E}</td>
+      <td style={td}>{team.P}</td>
+      <td style={td}>{team.GF}</td>
+      <td style={td}>{team.GC}</td>
+      <td style={td}>{team.DG}</td>
+      <td style={pointsCell}>{team.PTS}</td>
     </tr>
-  </thead>
+  ))}
+</tbody>
 
-  <tbody>
-   {group.teams?.map((team, index) => (
-      <tr key={index}>
-        <td style={teamCell}>
-          <img
-            src={`https://flagcdn.com/w40/${team.flag}.png`}
-            alt={team.name}
-            style={smallFlag}
-          />
-          {team.name}
-        </td>
+        </table>
 
-        <td style={td}>0</td>
-        <td style={td}>0</td>
-        <td style={td}>0</td>
-        <td style={td}>0</td>
-        <td style={td}>0</td>
-        <td style={td}>0</td>
-        <td style={td}>0</td>
-
-        <td style={pointsCell}>0</td>
-      </tr>
-    ))}
-  </tbody>
-</table>
+      </div>
 
     </div>
   ))}
 </section>
-
 <section id="eliminatorias" style={knockoutSection}>
   <h2 style={sectionTitle}>Eliminatorias</h2>
 
@@ -259,12 +357,12 @@ const finals = [
 const groups = [
   {
     name: "GRUPO A",
-     teams: [
-    { flag: "mx", name: "México" },
-    { flag: "za", name: "Sudáfrica" },
-    { flag: "kr", name: "Rep. de Corea" },
-    { flag: "cz", name: "Chequia" },
-  ],
+    teams: [
+  { flag: "mx", name: "México" },
+  { flag: "za", name: "Sudáfrica" },
+  { flag: "kr", name: "Rep. de Corea" },
+  { flag: "cz", name: "Chequia" },
+],
     matches: [
       { date: "11 JUN · 16:00 UY", homeFlag: "mx", home: "México", awayFlag: "za", away: "Sudáfrica" },
       { date: "11 JUN · 23:00 UY", homeFlag: "kr", home: "Rep. de Corea", awayFlag: "cz", away: "Chequia" },
@@ -639,16 +737,16 @@ const matchesGrid = {
 
 const matchRow = {
   display: "grid",
-  gridTemplateColumns: "200px 1fr 170px 1fr",
+  gridTemplateColumns: "180px 1fr 140px 1fr",
   alignItems: "center",
-  gap: "18px",
+  gap: "12px",
   background: "linear-gradient(180deg,#141414,#0b0b0b)",
   border: "1px solid rgba(123,208,0,.22)",
   borderRadius: "18px",
-  padding: "18px 22px",
+  padding: "16px",
   boxShadow: "0 0 18px rgba(123,208,0,.08)",
-  overflowX: "auto",
 };
+
 
 const matchDate = {
   color: "#7bd000",
