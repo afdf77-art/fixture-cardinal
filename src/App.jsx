@@ -2,18 +2,27 @@ import { useState } from "react";
 import heroImage from "./assets/hero-full.jpg";
 import copaImage from "./assets/copa.png";
 import "./App.css";
-export default function App() {const [scores, setScores] = useState({});
+export default function App() {const [scores, setScores] = useState(() => {
+  const savedScores = localStorage.getItem("fixtureScores");
+  return savedScores ? JSON.parse(savedScores) : {};
+});
 
 const updateScore = (groupName, matchIndex, side, value) => {
   const key = `${groupName}-${matchIndex}`;
 
-  setScores((prev) => ({
-    ...prev,
-    [key]: {
-      ...prev[key],
-      [side]: value,
-    },
-  }));
+  setScores((prev) => {
+    const updatedScores = {
+      ...prev,
+      [key]: {
+        ...prev[key],
+        [side]: value,
+      },
+    };
+
+    localStorage.setItem("fixtureScores", JSON.stringify(updatedScores));
+
+    return updatedScores;
+  });
 };
 
 const calculateStandings = (group) => {
