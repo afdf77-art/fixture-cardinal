@@ -264,6 +264,72 @@ return (
     </div>
   ))}
 </section>
+<section id="fase-final" style={knockoutSection}>
+  <div className="playHero">
+    <div>
+      <p className="playSubtitle">DEL MANO A MANO A LA GRAN FINAL</p>
+      <h2 className="playTitle">FASE FINAL</h2>
+    </div>
+
+    <img src={copaImage} alt="Copa del Mundo" className="playCup" />
+  </div>
+
+  <div className="playMenu">
+    <a href="#16avos" className="playCard">
+      <span className="playIcon">16</span>
+      <div>
+        <strong>16 AVOS</strong>
+        <small>Comienza la fase final</small>
+      </div>
+      <b>›</b>
+    </a>
+
+    <a href="#octavos" className="playCard">
+      <span className="playIcon">8</span>
+      <div>
+        <strong>OCTAVOS</strong>
+        <small>Los mejores siguen en carrera</small>
+      </div>
+      <b>›</b>
+    </a>
+
+    <a href="#cuartos" className="playCard">
+      <span className="playIcon">4</span>
+      <div>
+        <strong>CUARTOS</strong>
+        <small>Camino a semifinales</small>
+      </div>
+      <b>›</b>
+    </a>
+
+    <a href="#semis" className="playCard">
+      <span className="playIcon">SF</span>
+      <div>
+        <strong>SEMIFINALES</strong>
+        <small>Un paso de la final</small>
+      </div>
+      <b>›</b>
+    </a>
+
+    <a href="#tercer-puesto" className="playCard">
+      <span className="playIcon">3/4</span>
+      <div>
+        <strong>3º Y 4º PUESTO</strong>
+        <small>El partido por el podio</small>
+      </div>
+      <b>›</b>
+    </a>
+
+    <a href="#final" className="playCard">
+      <span className="playIcon">🏆</span>
+      <div>
+        <strong>FINAL</strong>
+        <small>El partido más esperado</small>
+      </div>
+      <b>›</b>
+    </a>
+  </div>
+</section>
 <section id="pronosticos" style={knockoutSection}>
   <div className="playHero">
     <div>
