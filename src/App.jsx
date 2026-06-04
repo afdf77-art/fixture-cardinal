@@ -125,8 +125,9 @@ return (
       </section>
 
       <section style={buttonSection}>
-       <a href="#fixture" style={greenButton}>FIXTURE</a>
+       <a href="#fixture" style={greenButton}>GRUPOS</a>
 
+<a href="#fase-final" style={darkButton}>FASE FINAL</a>
 <a href="#pronosticos" style={darkButton}>JUGÁ Y GANÁ</a>
       </section>
 
