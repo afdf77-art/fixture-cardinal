@@ -183,7 +183,6 @@
   }
 }
 @media (max-width: 768px) {
-
   body,
   html,
   main {
@@ -214,49 +213,55 @@
   }
 
   .table-scroll {
-  width: 100%;
-  overflow-x: hidden !important;
-}
-
-.table-scroll table {
-  width: 100% !important;
-  min-width: 100% !important;
-  max-width: 100% !important;
-  table-layout: fixed !important;
-  font-size: 10px !important;
-}
-
-.table-scroll th,
-.table-scroll td {
-  padding: 6px 1px !important;
-  white-space: normal !important;
-}
-
-.table-scroll th:first-child,
-.table-scroll td:first-child {
-  width: 42% !important;
-  font-size: 10px !important;
-}
-
-.table-scroll th:nth-child(6),
-.table-scroll td:nth-child(6),
-.table-scroll th:nth-child(7),
-.table-scroll td:nth-child(7),
-.table-scroll th:nth-child(8),
-.table-scroll td:nth-child(8) {
-  display: none !important;
-}
-
-.table-scroll img {
-  width: 20px !important;
-}
-
-  #eliminatorias {
-    padding: 60px 12px !important;
+    width: 100%;
     overflow-x: hidden !important;
   }
 
-  #eliminatorias > div {
+  .table-scroll table {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    table-layout: fixed !important;
+    font-size: 10px !important;
+  }
+
+  .table-scroll th,
+  .table-scroll td {
+    padding: 6px 1px !important;
+    white-space: normal !important;
+  }
+
+  .table-scroll th:first-child,
+  .table-scroll td:first-child {
+    width: 42% !important;
+    font-size: 10px !important;
+  }
+
+  .table-scroll th:nth-child(6),
+  .table-scroll td:nth-child(6),
+  .table-scroll th:nth-child(7),
+  .table-scroll td:nth-child(7),
+  .table-scroll th:nth-child(8),
+  .table-scroll td:nth-child(8) {
+    display: none !important;
+  }
+
+  .table-scroll img {
+    width: 20px !important;
+  }
+
+  #pronosticos {
+    padding: 60px 18px !important;
+    overflow-x: hidden !important;
+  }
+
+  #pronosticos h2 {
+    font-size: 54px !important;
+    line-height: 1.05 !important;
+    margin-bottom: 20px !important;
+  }
+
+  #pronosticos > div {
     display: grid !important;
     grid-template-columns: 1fr !important;
     width: 100% !important;
@@ -265,13 +270,209 @@
 
   .rounds-mobile {
     display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 12px !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
     width: 100% !important;
   }
 
-  #eliminatorias img {
-    width: 180px !important;
-    max-width: 80% !important;
+  .rounds-mobile > div,
+  #tercer-puesto,
+  #final {
+    background: linear-gradient(180deg,#141414,#0b0b0b);
+    border: 1px solid rgba(123,208,0,.35);
+    border-radius: 18px;
+    padding: 18px;
+    width: 100% !important;
+    box-sizing: border-box;
   }
+
+  .rounds-mobile h3,
+  #tercer-puesto h3,
+  #final h3 {
+    text-align: left !important;
+    font-size: 26px !important;
+    margin: 0 !important;
+  }
+
+  .rounds-mobile h3::after,
+  #tercer-puesto h3::after,
+  #final h3::after {
+    content: "›";
+    float: right;
+    color: #7bd000;
+    font-size: 36px;
+    line-height: 24px;
+  }
+
+  .rounds-mobile > div > div,
+  #tercer-puesto > div,
+  #final > div {
+    display: none !important;
+  }
+
+  #pronosticos img {
+    width: 170px !important;
+    max-width: 70% !important;
+    margin: 30px auto !important;
+  }
+}.playHero {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 34px;
+}
+
+.playSubtitle {
+  color: #7bd000;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.25;
+  margin: 0 0 18px;
+}
+
+.playTitle {
+  color: white;
+  font-size: 58px;
+  line-height: .95;
+  font-weight: 900;
+  margin: 0;
+  text-shadow: 0 0 22px rgba(123,208,0,.5);
+}
+
+.playCup {
+  width: 150px !important;
+  max-width: 100% !important;
+  filter: drop-shadow(0 0 28px rgba(255,215,0,.45));
+}
+
+.playMenu {
+  display: grid;
+  gap: 16px;
+}
+
+.playCard {
+  display: grid;
+  grid-template-columns: 64px 1fr 24px;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(180deg,#151515,#090909);
+  border: 1px solid rgba(123,208,0,.45);
+  border-radius: 18px;
+  padding: 18px;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 0 18px rgba(123,208,0,.08);
+}
+
+.playIcon {
+  width: 48px;
+  height: 48px;
+  border: 2px solid #7bd000;
+  border-radius: 50%;
+  color: #7bd000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 22px;
+}
+
+.playCard strong {
+  display: block;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.playCard small {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255,255,255,.78);
+  font-size: 14px;
+}
+
+.playCard b {
+  color: #7bd000;
+  font-size: 38px;
+  line-height: 1;
+}.playHero {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 34px;
+}
+
+.playSubtitle {
+  color: #7bd000;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.25;
+  margin: 0 0 18px;
+}
+
+.playTitle {
+  color: white;
+  font-size: 58px;
+  line-height: .95;
+  font-weight: 900;
+  margin: 0;
+  text-shadow: 0 0 22px rgba(123,208,0,.5);
+}
+
+.playCup {
+  width: 150px !important;
+  max-width: 100% !important;
+  filter: drop-shadow(0 0 28px rgba(255,215,0,.45));
+}
+
+.playMenu {
+  display: grid;
+  gap: 16px;
+}
+
+.playCard {
+  display: grid;
+  grid-template-columns: 64px 1fr 24px;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(180deg,#151515,#090909);
+  border: 1px solid rgba(123,208,0,.45);
+  border-radius: 18px;
+  padding: 18px;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 0 18px rgba(123,208,0,.08);
+}
+
+.playIcon {
+  width: 48px;
+  height: 48px;
+  border: 2px solid #7bd000;
+  border-radius: 50%;
+  color: #7bd000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 22px;
+}
+
+.playCard strong {
+  display: block;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.playCard small {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255,255,255,.78);
+  font-size: 14px;
+}
+
+.playCard b {
+  color: #7bd000;
+  font-size: 38px;
+  line-height: 1;
 }

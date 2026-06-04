@@ -264,78 +264,75 @@ return (
   ))}
 </section>
 <section id="pronosticos" style={knockoutSection}>
-  <h2 style={sectionTitle}>JUGÁ Y GANÁ</h2>
-  <div style={bracketGrid}>
-    <div style={roundsGrid} className="rounds-mobile">
-      <div id="16avos" style={roundColumn}>
-        <h3 style={roundTitle}>16avos</h3>
-        {dieciseisavos.map((match, index) => (
-          <div key={index} style={knockoutCard}>
-            <div style={knockoutTeam}>{match.home}</div>
-            <div style={knockoutTeam}>{match.away}</div>
-          </div>
-        ))}
-      </div>
-
-      <div id="octavos" style={roundColumn}>
-        <h3 style={roundTitle}>Octavos</h3>
-        {octavos.map((match, index) => (
-          <div key={index} style={knockoutCard}>
-            <div style={knockoutTeam}>{match.home}</div>
-            <div style={knockoutTeam}>{match.away}</div>
-          </div>
-        ))}
-      </div>
-
-      <div id="cuartos" style={roundColumn}>
-        <h3 style={roundTitle}>Cuartos</h3>
-        {cuartos.map((match, index) => (
-          <div key={index} style={knockoutCard}>
-            <div style={knockoutTeam}>{match.home}</div>
-            <div style={knockoutTeam}>{match.away}</div>
-          </div>
-        ))}
-      </div>
-
-      <div id="semis" style={roundColumn}>
-        <h3 style={roundTitle}>Semis</h3>
-        {semis.map((match, index) => (
-          <div key={index} style={knockoutCard}>
-            <div style={knockoutTeam}>{match.home}</div>
-            <div style={knockoutTeam}>{match.away}</div>
-          </div>
-        ))}
-      </div>
+  <div className="playHero">
+    <div>
+      <p className="playSubtitle">PRONOSTICÁ LOS RESULTADOS Y SUMÁ PUNTOS</p>
+      <h2 className="playTitle">JUGÁ Y GANÁ</h2>
     </div>
 
-    <div style={finalZone}>
-      <img src={copaImage} alt="Copa del Mundo" style={trophyImage} />
+    <img src={copaImage} alt="Copa del Mundo" className="playCup" />
+  </div>
 
-      <div id="tercer-puesto" style={roundColumn}>
-        <h3 style={roundTitle}>3º y 4º</h3>
-        {tercerPuesto.map((match, index) => (
-          <div key={index} style={knockoutCard}>
-            <div style={knockoutTeam}>{match.home}</div>
-            <div style={knockoutTeam}>{match.away}</div>
-          </div>
-        ))}
+  <div className="playMenu">
+    <a href="#final" className="playCard">
+      <span className="playIcon">🏆</span>
+      <div>
+        <strong>FINAL</strong>
+        <small>Predecí el campeón del Mundial</small>
       </div>
+      <b>›</b>
+    </a>
 
-      <div id="final" style={roundColumn}>
-        <h3 style={roundTitle}>Final</h3>
-        {finals.map((match, index) => (
-          <div key={index} style={finalCard}>
-            <div style={knockoutTeam}>{match.home}</div>
-            <div style={knockoutTeam}>{match.away}</div>
-          </div>
-        ))}
+    <a href="#tercer-puesto" className="playCard">
+      <span className="playIcon">3/4</span>
+      <div>
+        <strong>TERCER PUESTO</strong>
+        <small>¿Quién se queda con el 3º puesto?</small>
       </div>
-    </div>
+      <b>›</b>
+    </a>
+
+    <a href="#semis" className="playCard">
+      <span className="playIcon">SF</span>
+      <div>
+        <strong>SEMIFINALES</strong>
+        <small>Predecí los resultados de las semis</small>
+      </div>
+      <b>›</b>
+    </a>
+
+    <a href="#cuartos" className="playCard">
+      <span className="playIcon">4</span>
+      <div>
+        <strong>CUARTOS DE FINAL</strong>
+        <small>Predecí los 4 clasificados</small>
+      </div>
+      <b>›</b>
+    </a>
+
+    <a href="#octavos" className="playCard">
+      <span className="playIcon">8</span>
+      <div>
+        <strong>OCTAVOS DE FINAL</strong>
+        <small>Predecí los 8 clasificados</small>
+      </div>
+      <b>›</b>
+    </a>
+
+    <a href="#16avos" className="playCard">
+      <span className="playIcon">16</span>
+      <div>
+        <strong>16 AVOS DE FINAL</strong>
+        <small>Predecí los 16 clasificados</small>
+      </div>
+      <b>›</b>
+    </a>
   </div>
 </section>
     </main>
   );
 }
+
 const dieciseisavos = Array.from({ length: 16 }, (_, i) => ({
   home: `Equipo ${i * 2 + 1}`,
   away: `Equipo ${i * 2 + 2}`,
