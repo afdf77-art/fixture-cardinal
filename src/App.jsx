@@ -94,7 +94,7 @@ const calculateStandings = (group) => {
   );
 };
 return (
-    <main style={page}>
+  <main id="inicio" style={page}>
       <section style={imageSection}>
         <div style={imageWrapper}>
           <img src={heroImage} alt="Promo Mundial Cardinal" style={heroImg} />
@@ -396,8 +396,13 @@ return (
     </a>
   </div>
 </section>
-    </main>
-  );
+
+<a href="#inicio" className="menuFixed">
+  ↑ MENÚ
+</a>
+
+</main>
+);
 }
 
 const dieciseisavos = Array.from({ length: 16 }, (_, i) => ({
