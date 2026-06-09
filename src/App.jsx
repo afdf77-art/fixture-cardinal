@@ -8,12 +8,33 @@ export default function App() {
     const savedParticipant = localStorage.getItem("participantData");
     return savedParticipant
       ? JSON.parse(savedParticipant)
-      : { name: "", phone: "", whatsapp: false };
+     : { name: "", cedula: "", phone: "", whatsapp: false };
   });
 
-  const saveParticipant = () => {
-    localStorage.setItem("participantData", JSON.stringify(participant));
-    alert("¡Participación guardada!");
+  const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxD5cUKzqOV8dJo4UP-TFmoEiCMo_bMJwUANdJc74MBIkQgf9__aDEK2IAC4hzNMFZ-/exec";
+
+const saveParticipant = async () => {
+  const dataToSend = {
+    nombre: participant.name,
+    cedula: participant.cedula || "",
+    whatsapp: participant.whatsapp ? "Sí" : "No",
+    predicciones: JSON.stringify(finalPredictions),
+  };
+
+  localStorage.setItem("participantData", JSON.stringify(participant));
+
+  await fetch(GOOGLE_SCRIPT_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dataToSend),
+  });
+
+  alert("¡Participación enviada!");
+};
   };
 const [openRound, setOpenRound] = useState(null);
 const [openFixtureRound, setOpenFixtureRound] = useState(null);
@@ -386,7 +407,14 @@ return (
         setParticipant({ ...participant, name: e.target.value })
       }
     />
-
+<input
+  type="text"
+  placeholder="Cédula de ID"
+  value={participant.cedula ?? ""}
+  onChange={(e) =>
+    setParticipant({ ...participant, cedula: e.target.value })
+  }
+/>
     <input
       type="tel"
       placeholder="Teléfono"
