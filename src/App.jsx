@@ -2,10 +2,42 @@ import { useState } from "react";
 import heroImage from "./assets/hero-full.jpg";
 import copaImage from "./assets/copa.png";
 import "./App.css";
-export default function App() {const [scores, setScores] = useState(() => {
-  const savedScores = localStorage.getItem("fixtureScores");
-  return savedScores ? JSON.parse(savedScores) : {};
+
+export default function App() {
+  const [participant, setParticipant] = useState(() => {
+    const savedParticipant = localStorage.getItem("participantData");
+    return savedParticipant
+      ? JSON.parse(savedParticipant)
+      : { name: "", phone: "", whatsapp: false };
+  });
+
+  const saveParticipant = () => {
+    localStorage.setItem("participantData", JSON.stringify(participant));
+    alert("¡Participación guardada!");
+  };
+const [openRound, setOpenRound] = useState(null);
+
+const [finalPredictions, setFinalPredictions] = useState(() => {
+  const saved = localStorage.getItem("finalPredictions");
+  return saved ? JSON.parse(saved) : {};
 });
+
+const updateFinalPrediction = (matchKey, side, value) => {
+  const updated = {
+    ...finalPredictions,
+    [matchKey]: {
+      ...finalPredictions[matchKey],
+      [side]: value,
+    },
+  };
+
+  setFinalPredictions(updated);
+  localStorage.setItem("finalPredictions", JSON.stringify(updated));
+};
+  const [scores, setScores] = useState(() => {
+    const savedScores = localStorage.getItem("fixtureScores");
+    return savedScores ? JSON.parse(savedScores) : {};
+  });
 
 const updateScore = (groupName, matchIndex, side, value) => {
   const key = `${groupName}-${matchIndex}`;
@@ -340,63 +372,152 @@ return (
     <img src={copaImage} alt="Copa del Mundo" className="playCup" />
   </div>
 
-  <div className="playMenu">
-    <a href="#final" className="playCard">
-      <span className="playIcon">🏆</span>
-      <div>
-        <strong>FINAL</strong>
-        <small>Predecí el campeón del Mundial</small>
-      </div>
-      <b>›</b>
-    </a>
+  <div className="participantBox">
+    <h3>Completá tus datos</h3>
+    <p>
+      Pronosticá los resultados de la Fase Final del Mundial, sumá puntos y participá por premios.
+    </p>
 
-    <a href="#tercer-puesto" className="playCard">
-      <span className="playIcon">3/4</span>
-      <div>
-        <strong>TERCER PUESTO</strong>
-        <small>¿Quién se queda con el 3º puesto?</small>
-      </div>
-      <b>›</b>
-    </a>
+    <ul className="pointsList">
+      <li>Resultado exacto: 3 puntos</li>
+      <li>Ganador correcto: 1 punto</li>
+      <li>Campeón acertado: 5 puntos</li>
+    </ul>
 
-    <a href="#semis" className="playCard">
-      <span className="playIcon">SF</span>
-      <div>
-        <strong>SEMIFINALES</strong>
-        <small>Predecí los resultados de las semis</small>
-      </div>
-      <b>›</b>
-    </a>
+    <input
+      type="text"
+      placeholder="Nombre"
+      value={participant.name}
+      onChange={(e) =>
+        setParticipant({ ...participant, name: e.target.value })
+      }
+    />
 
-    <a href="#cuartos" className="playCard">
-      <span className="playIcon">4</span>
-      <div>
-        <strong>CUARTOS DE FINAL</strong>
-        <small>Predecí los 4 clasificados</small>
-      </div>
-      <b>›</b>
-    </a>
+    <input
+      type="tel"
+      placeholder="Teléfono"
+      value={participant.phone}
+      onChange={(e) =>
+        setParticipant({ ...participant, phone: e.target.value })
+      }
+    />
 
-    <a href="#octavos" className="playCard">
-      <span className="playIcon">8</span>
-      <div>
-        <strong>OCTAVOS DE FINAL</strong>
-        <small>Predecí los 8 clasificados</small>
-      </div>
-      <b>›</b>
-    </a>
+    <label className="checkBox">
+      <input
+        type="checkbox"
+        checked={participant.whatsapp}
+        onChange={(e) =>
+          setParticipant({ ...participant, whatsapp: e.target.checked })
+        }
+      />
+      Acepto recibir novedades y promociones de Cardinal por WhatsApp.
+    </label>
 
-    <a href="#16avos" className="playCard">
-      <span className="playIcon">16</span>
-      <div>
-        <strong>16 AVOS DE FINAL</strong>
-        <small>Predecí los 16 clasificados</small>
+    <button onClick={saveParticipant}>
+      GUARDAR PARTICIPACIÓN
+    </button>
+  </div>
+
+  <div className="predictionBox">
+    <h3>Mis predicciones</h3>
+
+    {[
+      { key: "16avos", title: "16 AVOS", icon: "16", matches: 16 },
+      { key: "octavos", title: "OCTAVOS", icon: "8", matches: 8 },
+      { key: "cuartos", title: "CUARTOS", icon: "4", matches: 4 },
+      { key: "semis", title: "SEMIFINALES", icon: "SF", matches: 2 },
+      { key: "tercer-puesto", title: "3º Y 4º PUESTO", icon: "3/4", matches: 1 },
+      { key: "final", title: "FINAL", icon: "🏆", matches: 1 },
+    ].map((round) => (
+      <div key={round.key} className="roundPrediction">
+        <button
+          type="button"
+          className="playCard roundButton"
+          onClick={() =>
+            setOpenRound(openRound === round.key ? null : round.key)
+          }
+        >
+          <span className="playIcon">{round.icon}</span>
+          <div>
+            <strong>{round.title}</strong>
+            <small>
+              {round.matches === 1
+                ? "1 partido para pronosticar"
+                : `${round.matches} partidos para pronosticar`}
+            </small>
+          </div>
+          <b>{openRound === round.key ? "⌃" : "›"}</b>
+        </button>
+
+        {openRound === round.key && (
+          <div className="roundPanel">
+            {Array.from({ length: round.matches }, (_, index) => {
+              const matchKey = `${round.key}-${index + 1}`;
+
+              return (
+                <div key={matchKey} className="predictionCard">
+                  <strong>Partido {index + 1}</strong>
+
+                  <div className="predictionInputs">
+                    <input
+                      type="text"
+                      placeholder="Equipo 1"
+                      value={finalPredictions[matchKey]?.team1 ?? ""}
+                      onChange={(e) =>
+                        updateFinalPrediction(matchKey, "team1", e.target.value)
+                      }
+                    />
+
+                    <input
+                      type="text"
+                      placeholder="Equipo 2"
+                      value={finalPredictions[matchKey]?.team2 ?? ""}
+                      onChange={(e) =>
+                        updateFinalPrediction(matchKey, "team2", e.target.value)
+                      }
+                    />
+
+                    <input
+                      type="number"
+                      placeholder="G1"
+                      value={finalPredictions[matchKey]?.score1 ?? ""}
+                      onChange={(e) =>
+                        updateFinalPrediction(matchKey, "score1", e.target.value)
+                      }
+                    />
+
+                    <input
+                      type="number"
+                      placeholder="G2"
+                      value={finalPredictions[matchKey]?.score2 ?? ""}
+                      onChange={(e) =>
+                        updateFinalPrediction(matchKey, "score2", e.target.value)
+                      }
+                    />
+                  </div>
+                </div>
+              );
+            })}
+
+            {round.key === "final" && (
+              <div className="predictionCard">
+                <strong>Campeón</strong>
+                <input
+                  type="text"
+                  placeholder="Equipo campeón"
+                  value={finalPredictions["champion"]?.team ?? ""}
+                  onChange={(e) =>
+                    updateFinalPrediction("champion", "team", e.target.value)
+                  }
+                />
+              </div>
+            )}
+          </div>
+        )}
       </div>
-      <b>›</b>
-    </a>
+    ))}
   </div>
 </section>
-
 <a href="#inicio" className="menuFixed">
   ↑ MENÚ
 </a>

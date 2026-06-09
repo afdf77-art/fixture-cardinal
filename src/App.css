@@ -489,5 +489,109 @@
   font-size: 14px;
   text-decoration: none;
   box-shadow: 0 0 22px rgba(123,208,0,.35);
+.participantBox {
+  margin-top: 34px;
+  background: linear-gradient(180deg,#151515,#090909);
+  border: 1px solid rgba(123,208,0,.45);
+  border-radius: 18px;
+  padding: 22px;
+  color: white;
+}
 
+.participantBox h3 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.participantBox p {
+  color: rgba(255,255,255,.78);
+  margin-bottom: 18px;
+}
+
+.participantBox input {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(123,208,0,.45);
+  background: #0c0c0c;
+  color: white;
+  font-size: 16px;
+}
+
+.participantBox button {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(123,208,0,.65);
+  background: linear-gradient(180deg,#1f1f1f,#090909);
+  color: white;
+  font-weight: 900;
+  font-size: 16px;
+}
+}.pointsList {
+  margin: 0 0 18px;
+  padding-left: 20px;
+  color: rgba(255,255,255,.82);
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+.checkBox {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: rgba(255,255,255,.82);
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 8px 0 18px;
+}
+
+.checkBox input {
+  width: auto !important;
+  margin-top: 3px;
+}.predictionBox {
+  margin-top: 34px;
+}
+
+.predictionBox h3 {
+  font-size: 28px;
+  margin-bottom: 18px;
+}
+
+.predictionCard {
+  background: linear-gradient(180deg,#151515,#090909);
+  border: 1px solid rgba(123,208,0,.35);
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 14px;
+}
+
+.predictionCard strong {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.predictionInputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 70px 70px;
+  gap: 10px;
+}
+
+.predictionCard input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(123,208,0,.45);
+  background: #0c0c0c;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .predictionInputs {
+    grid-template-columns: 1fr 1fr;
+  }
 }
