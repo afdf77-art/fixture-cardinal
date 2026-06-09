@@ -16,7 +16,7 @@ export default function App() {
     alert("¡Participación guardada!");
   };
 const [openRound, setOpenRound] = useState(null);
-
+const [openFixtureRound, setOpenFixtureRound] = useState(null);
 const [finalPredictions, setFinalPredictions] = useState(() => {
   const saved = localStorage.getItem("finalPredictions");
   return saved ? JSON.parse(saved) : {};
@@ -306,60 +306,54 @@ return (
     <img src={copaImage} alt="Copa del Mundo" className="playCup" />
   </div>
 
-  <div className="playMenu">
-    <a href="#16avos" className="playCard">
-      <span className="playIcon">16</span>
-      <div>
-        <strong>16 AVOS</strong>
-        <small>Comienza la fase final</small>
-      </div>
-      <b>›</b>
-    </a>
+  <div className="predictionBox">
+    {[
+      { key: "16avos-fixture", title: "16 AVOS", icon: "16", matches: 16 },
+      { key: "octavos-fixture", title: "OCTAVOS", icon: "8", matches: 8 },
+      { key: "cuartos-fixture", title: "CUARTOS", icon: "4", matches: 4 },
+      { key: "semis-fixture", title: "SEMIFINALES", icon: "SF", matches: 2 },
+      { key: "tercer-fixture", title: "3º Y 4º PUESTO", icon: "3/4", matches: 1 },
+      { key: "final-fixture", title: "FINAL", icon: "🏆", matches: 1 },
+    ].map((round) => (
+      <div key={round.key} className="roundPrediction">
+        <button
+          type="button"
+          className="playCard roundButton"
+          onClick={() =>
+  setOpenFixtureRound(
+    openFixtureRound === round.key ? null : round.key
+  )
+}
+        >
+          <span className="playIcon">{round.icon}</span>
+          <div>
+            <strong>{round.title}</strong>
+            <small>
+              {round.matches === 1
+                ? "1 partido"
+                : `${round.matches} partidos`}
+            </small>
+          </div>
+          <b>{openFixtureRound === round.key ? "⌃" : "›"}</b>
+        </button>
 
-    <a href="#octavos" className="playCard">
-      <span className="playIcon">8</span>
-      <div>
-        <strong>OCTAVOS</strong>
-        <small>Los mejores siguen en carrera</small>
+        {openFixtureRound === round.key && (
+          <div className="roundPanel">
+            {Array.from({ length: round.matches }, (_, index) => (
+              <div key={index} className="predictionCard">
+                <strong>Partido {index + 1}</strong>
+                <div className="predictionInputs">
+                  <input type="text" placeholder="Equipo 1" disabled />
+                  <input type="text" placeholder="Equipo 2" disabled />
+                  <input type="number" placeholder="G1" disabled />
+                  <input type="number" placeholder="G2" disabled />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-      <b>›</b>
-    </a>
-
-    <a href="#cuartos" className="playCard">
-      <span className="playIcon">4</span>
-      <div>
-        <strong>CUARTOS</strong>
-        <small>Camino a semifinales</small>
-      </div>
-      <b>›</b>
-    </a>
-
-    <a href="#semis" className="playCard">
-      <span className="playIcon">SF</span>
-      <div>
-        <strong>SEMIFINALES</strong>
-        <small>Un paso de la final</small>
-      </div>
-      <b>›</b>
-    </a>
-
-    <a href="#tercer-puesto" className="playCard">
-      <span className="playIcon">3/4</span>
-      <div>
-        <strong>3º Y 4º PUESTO</strong>
-        <small>El partido por el podio</small>
-      </div>
-      <b>›</b>
-    </a>
-
-    <a href="#final" className="playCard">
-      <span className="playIcon">🏆</span>
-      <div>
-        <strong>FINAL</strong>
-        <small>El partido más esperado</small>
-      </div>
-      <b>›</b>
-    </a>
+    ))}
   </div>
 </section>
 <section id="pronosticos" style={knockoutSection}>
