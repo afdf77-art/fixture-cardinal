@@ -28,8 +28,7 @@ const saveParticipant = async () => {
   nombre: participant.name,
   cedula: participant.cedula || "",
   whatsapp: participant.phone || "",
-  aceptaWhatsapp: participant.whatsapp ? "Sí" : "No",
-  predicciones: JSON.stringify(finalPredictions),
+  predicciones: finalPredictions,
 };
 
   localStorage.setItem("participantData", JSON.stringify(participant));
