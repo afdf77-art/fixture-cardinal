@@ -4,37 +4,36 @@ import copaImage from "./assets/copa.png";
 import "./App.css";
 
 export default function App() {
-  const [participant, setParticipant] = useState(() => {
+
+const [participant, setParticipant] = useState(() => {
     const savedParticipant = localStorage.getItem("participantData");
     return savedParticipant
       ? JSON.parse(savedParticipant)
-     : { name: "", cedula: "", phone: "", whatsapp: false };
+      : { name: "", cedula: "", phone: "", whatsapp: false };
   });
+  
 
   const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxD5cUKzqOV8dJo4UP-TFmoEiCMo_bMJwUANdJc74MBIkQgf9__aDEK2IAC4hzNMFZ-/exec";
 
 const saveParticipant = async () => {
-  const dataToSend = {
-    nombre: participant.name,
-    cedula: participant.cedula || "",
-    whatsapp: participant.whatsapp ? "Sí" : "No",
-    predicciones: JSON.stringify(finalPredictions),
-  };
+ const dataToSend = {
+  nombre: participant.name,
+  cedula: participant.cedula || "",
+  whatsapp: participant.phone || "",
+  aceptaWhatsapp: participant.whatsapp ? "Sí" : "No",
+  predicciones: JSON.stringify(finalPredictions),
+};
 
   localStorage.setItem("participantData", JSON.stringify(participant));
 
   await fetch(GOOGLE_SCRIPT_URL, {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(dataToSend),
-  });
+  method: "POST",
+  mode: "no-cors",
+  body: JSON.stringify(dataToSend),
+});
 
   alert("¡Participación enviada!");
-};
   };
 const [openRound, setOpenRound] = useState(null);
 const [openFixtureRound, setOpenFixtureRound] = useState(null);
@@ -416,24 +415,27 @@ return (
   }
 />
     <input
-      type="tel"
-      placeholder="Teléfono"
-      value={participant.phone}
-      onChange={(e) =>
-        setParticipant({ ...participant, phone: e.target.value })
-      }
-    />
+  type="tel"
+  placeholder="WhatsApp"
+  value={participant.phone}
+  onChange={(e) =>
+    setParticipant({ ...participant, phone: e.target.value })
+  }
+/>
 
-    <label className="checkBox">
-      <input
-        type="checkbox"
-        checked={participant.whatsapp}
-        onChange={(e) =>
-          setParticipant({ ...participant, whatsapp: e.target.checked })
-        }
-      />
-      Acepto recibir novedades y promociones de Cardinal por WhatsApp.
-    </label>
+   <label className="checkBox">
+  <input
+    type="checkbox"
+    checked={participant.whatsapp}
+    onChange={(e) =>
+      setParticipant({
+        ...participant,
+        whatsapp: e.target.checked,
+      })
+    }
+  />
+  Acepto recibir novedades y promociones de Cardinal por WhatsApp.
+</label>
 
     <button onClick={saveParticipant}>
       GUARDAR PARTICIPACIÓN

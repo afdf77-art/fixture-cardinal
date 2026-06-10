@@ -489,29 +489,62 @@
   font-size: 14px;
   text-decoration: none;
   box-shadow: 0 0 22px rgba(123,208,0,.35);
+}
+ 
 .participantBox {
-  margin-top: 34px;
+  max-width: 720px;
+  margin: 34px auto 0;
   background: linear-gradient(180deg,#151515,#090909);
   border: 1px solid rgba(123,208,0,.45);
   border-radius: 18px;
-  padding: 22px;
+  padding: 28px;
   color: white;
+  text-align: center;
 }
 
 .participantBox h3 {
-  margin: 0 0 8px;
+  margin: 0 0 12px;
   font-size: 28px;
 }
 
 .participantBox p {
-  color: rgba(255,255,255,.78);
-  margin-bottom: 18px;
+  color: rgba(255,255,255,.82);
+  margin: 0 auto 18px;
+  max-width: 620px;
+  line-height: 1.5;
 }
 
-.participantBox input {
+.pointsList {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 14px auto 24px !important;
+  max-width: 420px;
+  text-align: left;
+}
+
+.pointsList li {
+  list-style: none !important;
+  margin: 8px 0;
+  padding-left: 0;
+  color: white;
+  font-weight: 800;
+}
+
+.pointsList li::marker {
+  content: "" !important;
+}
+
+.pointsList li::before {
+  content: "🏆 ";
+}
+
+.participantBox input[type="text"],
+.participantBox input[type="tel"] {
   width: 100%;
+  max-width: 500px;
+  display: block;
   box-sizing: border-box;
-  margin-bottom: 12px;
+  margin: 10px auto;
   padding: 14px;
   border-radius: 12px;
   border: 1px solid rgba(123,208,0,.45);
@@ -520,8 +553,26 @@
   font-size: 16px;
 }
 
+.checkBox {
+  max-width: 500px;
+  margin: 14px auto 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  text-align: left;
+  color: rgba(255,255,255,.86);
+  font-size: 14px;
+  line-height: 1.4;
+}
+.checkBox input {
+  width: auto !important;
+  margin-top: 2px;
+  flex: 0 0 auto;
+}
+
 .participantBox button {
   width: 100%;
+  max-width: 500px;
   padding: 16px;
   border-radius: 14px;
   border: 1px solid rgba(123,208,0,.65);
@@ -529,32 +580,22 @@
   color: white;
   font-weight: 900;
   font-size: 16px;
-}
-}.pointsList {
-  margin: 0 0 18px;
-  padding-left: 20px;
-  color: rgba(255,255,255,.82);
-  line-height: 1.6;
-  font-weight: 700;
+  cursor: pointer;
 }
 
-.checkBox {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  color: rgba(255,255,255,.82);
-  font-size: 14px;
-  line-height: 1.4;
-  margin: 8px 0 18px;
-}
+@media (max-width: 768px) {
+  .participantBox {
+    padding: 22px 16px;
+  }
 
-.checkBox input {
-  width: auto !important;
-  margin-top: 3px;
-}.predictionBox {
-  margin-top: 34px;
-}
+  .participantBox h3 {
+    font-size: 24px;
+  }
 
+  .pointsList {
+    max-width: 100%;
+  }
+}
 .predictionBox h3 {
   font-size: 28px;
   margin-bottom: 18px;
@@ -594,4 +635,26 @@
   .predictionInputs {
     grid-template-columns: 1fr 1fr;
   }
+  .participantBox button:hover {
+  box-shadow: 0 0 20px rgba(123,208,0,.35);
+  transform: translateY(-1px);
+}
+
+.checkBox {
+  justify-content: center;
+}
+
+.predictionBox h3 {
+  font-size: 36px;
+  text-align: center;
+  margin: 30px 0;
+}
+.predictionBox {
+  margin-top: 50px;
+}
+.participantBox button:hover {
+  box-shadow: 0 0 25px rgba(123,208,0,.45);
+  transform: translateY(-2px);
+  transition: all .25s ease;
+}
 }
