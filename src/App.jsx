@@ -17,6 +17,13 @@ const [participant, setParticipant] = useState(() => {
   "https://script.google.com/macros/s/AKfycbxD5cUKzqOV8dJo4UP-TFmoEiCMo_bMJwUANdJc74MBIkQgf9__aDEK2IAC4hzNMFZ-/exec";
 
 const saveParticipant = async () => {
+
+  if (!participant.whatsapp) {
+    alert(
+      "Debés aceptar recibir comunicaciones por WhatsApp para participar."
+    );
+    return;
+  }
  const dataToSend = {
   nombre: participant.name,
   cedula: participant.cedula || "",
