@@ -13,33 +13,32 @@ const [participant, setParticipant] = useState(() => {
   });
   
 
-  const GOOGLE_SCRIPT_URL =
+const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxD5cUKzqOV8dJo4UP-TFmoEiCMo_bMJwUANdJc74MBIkQgf9__aDEK2IAC4hzNMFZ-/exec";
-const saveParticipant = async () => {
 
+const saveParticipant = async () => {
   if (!participant.whatsapp) {
-    alert(
-      "Debés aceptar recibir comunicaciones por WhatsApp para participar."
-    );
+    alert("Debés aceptar recibir comunicaciones por WhatsApp para participar.");
     return;
   }
- const dataToSend = {
-  nombre: participant.name,
-  cedula: participant.cedula || "",
-  whatsapp: participant.phone || "",
-  predicciones: finalPredictions,
-};
+
+  const dataToSend = {
+    nombre: participant.name,
+    cedula: participant.cedula || "",
+    whatsapp: participant.phone || "",
+    predicciones: finalPredictions,
+  };
 
   localStorage.setItem("participantData", JSON.stringify(participant));
 
   await fetch(GOOGLE_SCRIPT_URL, {
-  method: "POST",
-  mode: "no-cors",
-  body: JSON.stringify(dataToSend),
-});
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(dataToSend),
+  });
 
   alert("¡Participación enviada!");
-  };
+};
 const [openRound, setOpenRound] = useState(null);
 const [openFixtureRound, setOpenFixtureRound] = useState(null);
 const [finalPredictions, setFinalPredictions] = useState(() => {
