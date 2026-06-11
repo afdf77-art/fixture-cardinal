@@ -14,8 +14,7 @@ const [participant, setParticipant] = useState(() => {
   
 
   const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycby85SBhwUFZ31BKWFc6YXFDlWQeyy-SJibtkd48bqaBMyaREU4vg41nn8p1JPenxBtL/exec";
-
+  "https://script.google.com/macros/s/AKfycbxD5cUKzqOV8dJo4UP-TFmoEiCMo_bMJwUANdJc74MBIkQgf9__aDEK2IAC4hzNMFZ-/exec";
 const saveParticipant = async () => {
 
   if (!participant.whatsapp) {
