@@ -332,32 +332,72 @@ return (
 
   <div className="predictionBox">
     {[
-      { key: "16avos-fixture", title: "16 AVOS", icon: "16", matches: 16 },
-      { key: "octavos-fixture", title: "OCTAVOS", icon: "8", matches: 8 },
-      { key: "cuartos-fixture", title: "CUARTOS", icon: "4", matches: 4 },
-      { key: "semis-fixture", title: "SEMIFINALES", icon: "SF", matches: 2 },
-      { key: "tercer-fixture", title: "3º Y 4º PUESTO", icon: "3/4", matches: 1 },
-      { key: "final-fixture", title: "FINAL", icon: "🏆", matches: 1 },
+      {
+        key: "16avos",
+        title: "16 AVOS",
+        icon: "16",
+        matches: 16,
+        dateText: "Del 11/06 al 27/06",
+      },
+      {
+        key: "octavos",
+        title: "OCTAVOS",
+        icon: "8",
+        matches: 8,
+        dateText: "Del 28/06 al 03/07",
+      },
+      {
+        key: "cuartos",
+        title: "CUARTOS",
+        icon: "4",
+        matches: 4,
+        dateText: "Del 04/07 al 08/07",
+      },
+      {
+        key: "semis",
+        title: "SEMIFINALES",
+        icon: "SF",
+        matches: 2,
+        dateText: "Del 09/07 al 13/07",
+      },
+      {
+        key: "tercer-puesto",
+        title: "3º Y 4º PUESTO",
+        icon: "3/4",
+        matches: 1,
+        dateText: "09/07 al 13/07",
+      },
+      {
+        key: "final",
+        title: "FINAL",
+        icon: "🏆",
+        matches: 1,
+        dateText: "09/07 al 13/07",
+      },
     ].map((round) => (
       <div key={round.key} className="roundPrediction">
         <button
           type="button"
           className="playCard roundButton"
           onClick={() =>
-  setOpenFixtureRound(
-    openFixtureRound === round.key ? null : round.key
-  )
-}
+            setOpenFixtureRound(
+              openFixtureRound === round.key ? null : round.key
+            )
+          }
         >
           <span className="playIcon">{round.icon}</span>
+
           <div>
             <strong>{round.title}</strong>
+
             <small>
+              {round.dateText} ·{" "}
               {round.matches === 1
                 ? "1 partido"
                 : `${round.matches} partidos`}
             </small>
           </div>
+
           <b>{openFixtureRound === round.key ? "⌃" : "›"}</b>
         </button>
 
@@ -366,11 +406,31 @@ return (
             {Array.from({ length: round.matches }, (_, index) => (
               <div key={index} className="predictionCard">
                 <strong>Partido {index + 1}</strong>
+
                 <div className="predictionInputs">
-                  <input type="text" placeholder="Equipo 1" disabled />
-                  <input type="text" placeholder="Equipo 2" disabled />
-                  <input type="number" placeholder="G1" disabled />
-                  <input type="number" placeholder="G2" disabled />
+                  <input
+                    type="text"
+                    placeholder="Equipo 1"
+                    disabled
+                  />
+
+                  <input
+                    type="text"
+                    placeholder="Equipo 2"
+                    disabled
+                  />
+
+                  <input
+                    type="number"
+                    placeholder="G1"
+                    disabled
+                  />
+
+                  <input
+                    type="number"
+                    placeholder="G2"
+                    disabled
+                  />
                 </div>
               </div>
             ))}
@@ -410,36 +470,38 @@ return (
         setParticipant({ ...participant, name: e.target.value })
       }
     />
-<input
-  type="text"
-  placeholder="Cédula de ID"
-  value={participant.cedula ?? ""}
-  onChange={(e) =>
-    setParticipant({ ...participant, cedula: e.target.value })
-  }
-/>
-    <input
-  type="tel"
-  placeholder="WhatsApp"
-  value={participant.phone}
-  onChange={(e) =>
-    setParticipant({ ...participant, phone: e.target.value })
-  }
-/>
 
-   <label className="checkBox">
-  <input
-    type="checkbox"
-    checked={participant.whatsapp}
-    onChange={(e) =>
-      setParticipant({
-        ...participant,
-        whatsapp: e.target.checked,
-      })
-    }
-  />
-  Acepto recibir novedades y promociones de Cardinal por WhatsApp.
-</label>
+    <input
+      type="text"
+      placeholder="Cédula de ID"
+      value={participant.cedula ?? ""}
+      onChange={(e) =>
+        setParticipant({ ...participant, cedula: e.target.value })
+      }
+    />
+
+    <input
+      type="tel"
+      placeholder="WhatsApp"
+      value={participant.phone}
+      onChange={(e) =>
+        setParticipant({ ...participant, phone: e.target.value })
+      }
+    />
+
+    <label className="checkBox">
+      <input
+        type="checkbox"
+        checked={participant.whatsapp}
+        onChange={(e) =>
+          setParticipant({
+            ...participant,
+            whatsapp: e.target.checked,
+          })
+        }
+      />
+      Acepto recibir novedades y promociones de Cardinal por WhatsApp.
+    </label>
 
     <button onClick={saveParticipant}>
       GUARDAR PARTICIPACIÓN
@@ -450,34 +512,83 @@ return (
     <h3>Mis predicciones</h3>
 
     {[
-      { key: "16avos", title: "16 AVOS", icon: "16", matches: 16 },
-      { key: "octavos", title: "OCTAVOS", icon: "8", matches: 8 },
-      { key: "cuartos", title: "CUARTOS", icon: "4", matches: 4 },
-      { key: "semis", title: "SEMIFINALES", icon: "SF", matches: 2 },
-      { key: "tercer-puesto", title: "3º Y 4º PUESTO", icon: "3/4", matches: 1 },
-      { key: "final", title: "FINAL", icon: "🏆", matches: 1 },
+      {
+        key: "16avos",
+        title: "16 AVOS",
+        icon: "16",
+        matches: 16,
+        active: true,
+        dateText: "Disponible hasta el 27/06",
+      },
+      {
+        key: "octavos",
+        title: "OCTAVOS",
+        icon: "8",
+        matches: 8,
+        active: false,
+        dateText: "Disponible del 28/06 al 03/07",
+      },
+      {
+        key: "cuartos",
+        title: "CUARTOS",
+        icon: "4",
+        matches: 4,
+        active: false,
+        dateText: "Disponible del 04/07 al 08/07",
+      },
+      {
+        key: "semis",
+        title: "SEMIFINALES",
+        icon: "SF",
+        matches: 2,
+        active: false,
+        dateText: "Disponible del 09/07 al 13/07",
+      },
+      {
+        key: "tercer-puesto",
+        title: "3º Y 4º PUESTO",
+        icon: "3/4",
+        matches: 1,
+        active: false,
+        dateText: "Disponible del 09/07 al 13/07",
+      },
+      {
+        key: "final",
+        title: "FINAL",
+        icon: "🏆",
+        matches: 1,
+        active: false,
+        dateText: "Disponible del 09/07 al 13/07",
+      },
     ].map((round) => (
       <div key={round.key} className="roundPrediction">
         <button
           type="button"
-          className="playCard roundButton"
-          onClick={() =>
-            setOpenRound(openRound === round.key ? null : round.key)
-          }
+          className={`playCard roundButton ${!round.active ? "lockedCard" : ""}`}
+          onClick={() => {
+            if (!round.active) return;
+            setOpenRound(openRound === round.key ? null : round.key);
+          }}
         >
           <span className="playIcon">{round.icon}</span>
+
           <div>
             <strong>{round.title}</strong>
             <small>
-              {round.matches === 1
-                ? "1 partido para pronosticar"
-                : `${round.matches} partidos para pronosticar`}
+              {round.active
+                ? `${round.dateText} · ${
+                    round.matches === 1
+                      ? "1 partido para pronosticar"
+                      : `${round.matches} partidos para pronosticar`
+                  }`
+                : `🔒 Próximamente · ${round.dateText}`}
             </small>
           </div>
+
           <b>{openRound === round.key ? "⌃" : "›"}</b>
         </button>
 
-        {openRound === round.key && (
+        {round.active && openRound === round.key && (
           <div className="roundPanel">
             {Array.from({ length: round.matches }, (_, index) => {
               const matchKey = `${round.key}-${index + 1}`;
